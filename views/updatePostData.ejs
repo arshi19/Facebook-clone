@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Document</title>
+
+
+    <style>
+        .main {
+            height: 80vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: rgb(0, 0, 0);
+        }
+
+        .box {
+
+            padding: 2vmax 4vmax;
+            width: 40vw;
+            height: 70vh;
+            box-shadow: 13px 1px 28px grey;
+            display: flex;
+            flex-direction: column;
+        }
+        .profilePic {
+      height: 40px;
+      width: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <%- include('navbar')%>
+
+
+        <div class="main">
+
+            <div class="box">
+
+                <h1 class="text-danger" >This part is remaining !!!</h1>
+                <form action="" method="post">
+                    <div class="user_detail d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <img class="profilePic" src="/uploads/<%= user.avatar%>" alt="">
+                          <h4 class="ms-2 my-auto">
+                            <%= user.username%>
+                          </h4>
+                        </div>
+                      </div>
+
+                    <% posts.blog.forEach(function(odd){ %>
+
+                        <div class="userBlog w-100">
+                          <% if( odd.type==='header' ){%>
+                            <label for=""></label>
+                            <input type="text" value=" <%= odd.data.text%>">
+                            <% } else if(odd.type==='paragraph' ) { %>
+                              <label for="Paragraph"></label>
+                              <textarea name="" id="" cols="30" rows="10"><%= odd.data.text%></textarea>
+                              <% } else if(odd.type==='image' ) { %>
+                                <img class="postPic my-2" src="<%= odd.data.file.url%>" alt="">
+        
+        
+                                <%}%>
+                        </div>
+        
+                        <%})%>
+                </form>
+
+
+            </div>
+
+        </div>
+
+
+        <script>
+            const uploadFile = document.querySelector(".uploadfile");
+            const preview = document.querySelector(".preview");
+            uploadFile.addEventListener("change", function (e) {
+                preview.src = URL.createObjectURL(e.target.files[0]);
+            });
+
+
+        </script>
+
+
+        <%- include('html_foot')%>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="homepage-container">
+        <h1>Welcome to homepage</h1>
+
+
+        <a title="Create Post" style="text-decoration: none" href="/create-post">➕</a>
+        <ol>
+            <% posts.forEach(function(obj){ %>
+
+                <li class="post">
+
+                    <% obj.blog.forEach(function(odd){ %>
+
+
+                        <% if( odd.type === 'header'){%>
+                            <h1><%= odd.data.text%></h1>
+                        <% } else if(odd.type === 'paragraph') { %>
+                            <p><%= odd.data.text%></p>
+                        <% }else{ %>
+                            <h2><%= odd.data.file.url%></h2>
+                       <% }%>
+                         
+                    <%})%>
+
+                </li>
+
+            <%})%>
+        </ol>
+    </div>
+
+</body>
+
+</html>

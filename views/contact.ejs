@@ -1,0 +1,40 @@
+
+<%- include('html_head')%>
+<style>
+    body{background-color: #a5a6a69b;}
+    .ri-contacts-book-2-fill{
+    padding-bottom: 5px;
+    border-bottom: 2px solid royalblue;
+    color:royalblue;
+  }
+  form{
+    width: 30vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  form button{
+    width: 100%;
+  }
+</style>
+<%- include('navbar')%>
+
+
+
+<form class=" m-auto my-5 p-4 rounded-5 bg-light" >
+    
+    <div class="my-3 form-group">
+      <label for="exampleInputPassword1">Subject</label>
+      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Subject">
+    </div>
+    <div class="my-3 form-group">
+      <label for="exampleInputPassword1">Message</label>
+      <textarea placeholder="Message" class="form-control" name="" id="" cols="" rows="8"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
+
+
+
+<%- include('html_foot')%>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <title>Document</title>
+
+
+  <style>
+    body {
+      background-color: #F1F2F5;
+      padding-top: 10vh;
+      position: relative;
+    }
+
+  nav{
+    background-color: rgb(255, 255, 255);
+    position: fixed !important;
+    width: 100vw;
+    top: 0;
+    height: 10vh;
+    z-index: 200;
+    box-shadow: 0 1px 10px grey;
+
+  }
+  nav i{
+    font-size: 2.5vmax;
+    margin: 0 1vmax;
+  }
+    .ri-bookmark-3-fill {
+      padding-bottom: 5px;
+      border-bottom: 2px solid royalblue;
+      color: royalblue;
+    }
+
+    .profilePic {
+      height: 40px;
+      width: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .postPic {
+      object-fit: cover;
+      /* scale: .7; */
+      height: 100%;
+      ;
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    .left {
+      position: fixed;
+      height: 100vh;
+      width: 26vw;
+      background-color: #F1F2F5;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .left li {
+      margin: 1.3vmax 0;
+      font-size: 1.2vmax;
+      font-weight: 600;
+      list-style: none;
+    }
+    .poff{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+    .propif{
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .left li img {
+      margin-right: 20px;
+
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+
+  <nav class="navbar navbar-expand-lg py-3 px-5">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-1 text-primary" href="/home">facebook</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link fs-6 mx-2 my-auto" aria-current="page" href="/home"><i class="ri-home-4-fill"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-6 mx-2 my-auto" href="/about"><i class="ri-bookmark-3-fill"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-6 mx-2 my-auto" href="/ownProfile"><i class="ri-account-circle-fill"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-6 mx-2 my-auto" href="/writePost"><i class="ri-edit-box-fill"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-6 mx-2 my-auto" href="/contact"><i class="ri-contacts-book-2-fill"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+    <div class="left">
+      <ul>
+        <li class="poff"><img class="propif" src="/uploads/<%= user.avatar%>" alt=""> <%= user.username%></li>
+        <li><img src="https://img.icons8.com/color/48/null/group.png" />Friends</li>
+        <li><img src="https://img.icons8.com/color/48/null/overtime.png" /> Most Recent</li>
+        <li><img src="https://img.icons8.com/color/48/null/people-skin-type-7.png" /> Groups</li>
+        <li> <img src="https://img.icons8.com/color/48/null/online-store.png" />Marketplace</li>
+        <li> <img src="https://img.icons8.com/color/48/null/tv-show.png" />Watch</li>
+        <li><img src="https://img.icons8.com/color/48/null/clock--v4.png" /> Memories</li>
+        <li><img src="https://img.icons8.com/color/48/null/save-close--v1.png" /> Saved</li>
+        <li><img src="https://img.icons8.com/color/48/null/ingredients-list.png" />Pages</li>
+        <li><img src="https://img.icons8.com/color/48/null/instagram-reel.png" />Reels</li>
+      </ul>
+    </div>
+    <div id="postSaved" class="smoothScroll">
+      <% saved.forEach(function(obj){ %>
+
+        <div class="card m-auto my-4 p-2 overflow-hidden" style="width: 38rem;">
+
+          <div class="user_detail ">
+            <div class="d-flex align-items-center">
+              <img class="profilePic" src="/uploads/<%= obj.author.avatar%>" alt="">
+              <h4 class="ms-2 my-auto">
+                <%= obj.author.username%>
+              </h4>
+            </div>
+
+          </div>
+          <% obj.blog.forEach(function(odd){ %>
+
+            <div class="userBlog w-100">
+              <% if( odd.type==='header' ){%>
+                <h6 class="my-2">
+                  <%= odd.data.text%>
+                </h6>
+                <% } else if(odd.type==='paragraph' ) { %>
+                  <p class="">
+                    <%= odd.data.text%>
+                  </p>
+                  <% } else if(odd.type==='image' ) { %>
+                    <img class="postPic my-2" src="<%= odd.data.file.url%>" alt="">
+
+
+                    <%}%>
+            </div>
+
+            <%})%>
+              <div class="reactionDiv d-flex">
+                <a class="text-decoration-none" href=""><i class="mx-2 fs-5 ri-thumb-up-line text-dark"></i></a>
+                <a class="text-decoration-none" href=""><i class="mx-2 fs-5 ri-thumb-down-line text-dark"></i></a>
+                <a class="text-decoration-none" href="/unSavePost/<%= obj._id%>"><i
+                    class="mx-2 fs-5 ri-bookmark-2-line text-dark"></i></a>
+
+              </div>
+
+        </div>
+
+        <%})%>
+    </div>
+
+
+    <%- include('html_foot')%>

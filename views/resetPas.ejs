@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Document</title>
+
+
+<style>
+    .main{
+        height: 80vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: grey;
+    }
+    form{
+        
+        padding: 5vmax;;
+        width: 40vw;
+        height: 70vh;
+
+        box-shadow: 13px 1px 28px grey;
+        display: flex;
+        flex-direction: column;
+    }
+    .profileImg{
+        display: flex;
+    }
+    .profileImg > img{
+        height: 60px;
+        width: 60px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    input{
+        outline: none;
+        border: none;
+        border-bottom: 1px solid grey;
+        margin-bottom: 3vmax;
+        margin-top: 1vmax;
+    }
+</style>
+</head>
+<body>
+    
+
+
+
+<%- include('navbar')%>
+
+
+<div class="main">
+    <form action="/ressetPassword" method="post">
+        <h1 class="text-dark mb-5">Change Password</h1>
+
+
+        <label for="Password">Old Password</label>
+        <input type="password" name="oldPassword" required value="">
+    
+        <label for="Password">New Password</label>
+        <input type="password" name="newPassword" required value="">
+        <div class="d-flex justify-content-end">
+            <a class="px-3 py-1 border rounded-5 btn text-success border-1 border-success" href="/ownProfile">Cancel</a>
+            <button type="submit" class="px-3 py-1 ms-3 rounded-5 btn btn-success border border-1 border-success">Change</button>
+        
+        </div>
+    </form>
+    
+</div>
+
+
+<%- include('html_foot')%>

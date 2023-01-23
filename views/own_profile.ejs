@@ -1,0 +1,268 @@
+<%- include('html_head')%>
+<style>
+  nav{
+    background-color: rgb(255, 255, 255);
+    position: fixed !important;
+    width: 100vw;
+    top: 0;
+    height: 10vh;
+    z-index: 200;
+    box-shadow: 0 1px 10px grey;
+
+  }
+  nav i{
+    font-size: 2.5vmax;
+    margin: 0 1vmax;
+  }
+  
+  .ri-account-circle-fill{
+    padding-bottom: 5px;
+    border-bottom: 2px solid royalblue;
+    color:royalblue;
+  }
+</style>
+<nav class="navbar navbar-expand-lg py-3 px-5">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-1 text-primary" href="/home">facebook</a>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link fs-6 mx-2 my-auto" aria-current="page" href="/home"><i class="ri-home-4-fill"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fs-6 mx-2 my-auto" href="/about"><i class="ri-bookmark-3-fill"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fs-6 mx-2 my-auto" href="/ownProfile"><i class="ri-account-circle-fill"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fs-6 mx-2 my-auto" href="/writePost"><i class="ri-edit-box-fill"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fs-6 mx-2 my-auto" href="/contact"><i class="ri-contacts-book-2-fill"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+  <style>
+    body{
+      background-color: #F1F2F5;
+      overflow-x: hidden;
+    }
+    .main {
+      height: 90vh;
+      width: 100vw;
+      position: relative;
+      display: flex;
+      /* overflow-x: hidden; */
+      /* background-color: red; */
+    }
+
+    .profilePic {
+      height: 40px;
+      width: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .postPic {
+      object-fit: cover;
+      /* scale: .7; */
+      height: 100%;
+      ;
+      width: 100%;
+    }
+
+    .right>img {
+      height: 110px;
+      width: 110px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .right {
+      position: fixed;
+      width: 40vw;
+      height: 100vh;
+      padding: 9vmax 5vmax;
+      transform: translateX(250%);
+      transition: .7s all ease-in-out;
+
+    }
+    .righttt>img {
+      height: 80px;
+      width: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .righttt {
+      position: fixed;
+      width: 30vw;
+      height: 100vh;
+      padding: 5vmax 5vmax;
+
+    }
+    .ri-close-line{
+      position: absolute;
+      font-size: 3vmax;
+      color: grey;
+      right: 39%;
+      top: 12%;
+      
+    }
+    .left {
+
+      width: 100vw;
+      min-height: 90vh;
+      /* border-right: 1px solid grey; */
+      display: flex;
+      flex-direction: column;
+      margin-top: 5vmax;
+      margin-left: 10vw;
+
+    }
+    .box{
+      height: 40vh;
+      width:25vw;
+      background-color: #fff;
+      box-shadow: 1px 1px 10px grey;
+      border-radius: 10px;
+      padding: 20px;
+      color: grey;
+    }
+    .box i{
+      font-size: 1.5vmax;
+      margin-right: .6vmax;
+    }
+    .box h6{
+      display: flex;
+      align-items: center;
+      margin: .8vmax 0;
+      font-weight: 300;
+    }
+    .box h6 span{
+      color: rgb(86, 86, 86);
+      margin-left: 5px;
+    }
+    .box a{
+      text-decoration: none;
+      color: #000;
+      background-color: rgb(206, 206, 206);
+      padding: .6vmax 1.2vmax;
+      text-align: center;
+      border-radius: 10px;
+      font-weight: 500;
+      margin: 1vmax 0;
+    }
+    .righttt > .ri-more-fill{
+      position: absolute; 
+      top: 16%;
+      left: 90%;
+      font-weight: 900;
+    }
+
+  </style>
+
+  <div class="main">
+    <div class="righttt">
+
+      <img class="my-5" src="/uploads/<%= user.avatar%>" alt="">
+      <h3 class=" d-inline fs-2 ms-3 fw-bolder">
+        <%= user.username%>
+      </h3>
+      <i class="ri-more-fill fs-2"></i>
+      <div class="box d-flex flex-column">
+        <h4 class="text-dark">About</h4>
+
+        <h6><i class="ri-home-4-fill"></i> Lives in <span> ABC</span></h6>
+        <h6><i class="ri-map-pin-2-fill"></i> From <span> XYZ</span> </h6>
+        <h6><i class="ri-heart-fill"></i> Single</h6>
+        <h6><i class="ri-time-fill"></i> Joined on <span> DD/MM/YYYY</span></h6>
+        <a href="">Edit Details</a>
+      </div>
+    </div>
+
+    <div class="left">
+        <div id="postUploaded" class="smoothScroll">
+          <% posts.forEach(function(obj){ %>
+
+            <div class="card m-auto my-4 p-2 overflow-hidden" style="width: 38rem;">
+
+              <div class="user_detail d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                  <img class="profilePic" src="/uploads/<%= user.avatar%>" alt="">
+                  <h4 class="ms-2 my-auto">
+                    <%= user.username%>
+                  </h4>
+                </div>
+                <div class="dropdown">
+                  <button class="border-0 bg-transparent" type="button" data-bs-toggle="dropdown" aria-="false">
+                    <i class="fs-3 ri-more-fill"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/editPost/<%= obj._id%>">Edit</a></li>
+                    <li><a class="dropdown-item" href="/deletePost/<%= obj._id%>">Delete</a></li>
+
+                  </ul>
+                </div>
+              </div>
+              <% obj.blog.forEach(function(odd){ %>
+
+                <div class="userBlog w-100">
+                  <% if( odd.type==='header' ){%>
+                    <h6 class="my-2">
+                      <%= odd.data.text%>
+                    </h6>
+                    <% } else if(odd.type==='paragraph' ) { %>
+                      <p class="">
+                        <%= odd.data.text%>
+                      </p>
+                      <% } else if(odd.type==='image' ) { %>
+                        <img class="postPic my-2" src="<%= odd.data.file.url%>" alt="">
+
+
+                        <%}%>
+                </div>
+
+                <%})%>
+                  <div class="reactionDiv d-flex">
+                    <a class="text-decoration-none" href=""><i class="mx-2 fs-5 ri-thumb-up-line text-dark"></i></a>
+                    <a class="text-decoration-none" href=""><i class="mx-2 fs-5 ri-thumb-down-line text-dark"></i></a>
+                  </div>
+
+            </div>
+
+            <%})%>
+
+        </div>
+    </div>
+
+    <div class="right my-4">
+      <i class="ri-close-line"></i>
+      <img class="" src="/uploads/<%= user.avatar%>" alt="">
+      <h3 class="my-4">
+        <%= user.username%>
+      </h3>
+      <div class="linkss d-flex flex-column">
+        <a class="text-success my-2 border-bottom-1 text-decoration-none" href="/updateProfileDetailPage">Edit
+          profile</a>
+        <a class="text-dark my-2 border-bottom-1 text-decoration-none" href="/resetPass">Reset Password</a>
+        <a class="text-danger my-2 border-bottom-1 text-decoration-none" href="/logout">Logout</a>
+        <a class="text-danger my-2 border-bottom-1 text-decoration-none" href="/deletee">Delete Account</a>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector(".righttt > .ri-more-fill").addEventListener("click",() => {
+      document.querySelector(".right").style.transform = "translateX(185%)";
+    })
+    document.querySelector(".ri-close-line").addEventListener("click",() => {
+      document.querySelector(".right").style.transform = "translateX(250%)";
+    })
+  </script>
+
+  <%- include('html_foot')%>
